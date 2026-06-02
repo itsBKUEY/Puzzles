@@ -1,0 +1,27 @@
+ .card{
+            
+    font-size: 1rem;
+    width: 7.5em;
+    height: 15em;
+    color: #1a1a2e;
+    background: #f4f4f4;
+    
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+
+    
+ }
+ 
+
+ .cardCarrior{
+    display: inline-grid;
+    /*
+    Set by JS
+    grid-template-columns: 0;
+    */
+    padding: 10px;
+     gap: 5px;
+
+ }
