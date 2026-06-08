@@ -1,46 +1,67 @@
+
 //global variable
 var used = false;
+alert("TEST")
+
+// submit button set up
+let submity = document.querySelector('#submit')
+
+//version set up
+let versionEle = document.querySelector('#version')
+versionEle.setAttribute('type', "number")
+versionEle.setAttribute('placeholder', "ex: 1, 2, 3 etc")
+//Dimension Set up
+
+let dimElement = document.querySelector('#dim')
+dimElement.setAttribute('type', 'text')
+dimElement.setAttribute('placeholder', "ex: 2x2, 3x4, etc(colxrow)")
+
+
+//Card Gen Set up
+let cardGen =  document.getElementById("cardGen");
+        cardGen.innerHTML = "<div> hiii </div>"
+ 
+    //Title set Up
+let versionTitle = document.getElementById("verTitle");
+
+// Deck set up
+//Holds all cards before sorted
+let deck = []
+
+// Match setup
+// Match map to match two different cards
+const checker = new Map();
+
+
+// click checker, starts 
+submity.addEventListener('click',returnText )
 
 
 
-//This was purposefully coded badly so that it can improved by student.
+
 function returnText(){
-    let dim = document.getElementById("dim").value
-    let version = document.getElementById("version").value
+
+    //User inputs intialized
+    let dim = dimElement.value
+    let version = versionEle.value
     let row, col;
 
-    if(version > 4 ){
-        alert("This puzzle section hasn't been implemented yet, sorry. ")
+
+    if(version > 2 ){
+        alert("This puzzle section hasn't been implemented yet, sorry.")
     }
     if(version <= 0 ){
         alert("There is no negative puzzle versions")
     }
-    //only seting it 3 to keep it efficient and since we are only ever gonna get it in NumberxNumber formate
-  /*
+  
 
-  //We kee this remeber older sped code lol
-    for(let i = 0; i < 3; i++){
-       if( i == 0){
-        col = dim[0]
-       }
-       if( i == 2){
-        row = dim[2]
-       }
-    }
-       
-    */
 
-    //alert(dim)
-    //alert(dim.length)
 
     for(let i = 0; i < dim.length;i++){
           if(  dim[i] == 'x'){
-               // alert(i)
-                //0 to i 
+            // finds x places index there and prooceds on
                 row  = Number(dim.substring(0, i));
-                //alert( "ROW"+ row) 
                 col  = Number(dim.substring(i+1, dim.length));
-                //alert( "COL"+ col)
                 break
           }
           
@@ -48,21 +69,6 @@ function returnText(){
             alert("Reformat this to (number)x(number) ")
           }
     }
-
-   /* let rowsearch = 0;
-    if(  dim[i] == 'x'){
-    alert("test1")
-   // row  = string.substring(0, dim[i]);
-  //  col = string.substring(dim[i], dim.length );
-    break
-    }
-   
-    if (i == dim.length-1){
-        alert("this is not a valid config")
-
-    }
-    }
-      */
     
     GenerateGid(col, row, version)
 
@@ -71,53 +77,62 @@ function returnText(){
 
 function GenerateGid(col, row, version){
 
-    alert( "COL :" + col)
-    alert( "ROW :" + row)
+    console.log( "COL :" + col)
+    console.log( "ROW :" + row)
     
-    if(used = true){
+    if(used === true){
         clearMap()
     }
 
-    let cardGen =  document.getElementById("cardGen");
-    let versionTitle = document.getElementById("verTitle");
     versionTitle.innerText = "Match Game!\n" +   " Version " + version
-
     cardGen.style.gridTemplateColumns = "repeat("+ col +", auto)"
     //cardGen.style.gridTemplateRows = "repeat("+ row +", auto)"
 
     for(let i = 0; i<col; i++ ){
         for(let y = 0; y<row; y++ ){
-            cardGen.innerHTML += '<div class="card" onclick="() id=" card' + i+y + '"> (' + i+y + ') </div>';  
+            createCard(y+""+ i)
+            
         }
     used = true
     }
 
+   
+  
+   cardGen.innerHTML = deck[0].outerHTML;
+  
 }
 
-function select(id){
-    alert(id)
+
+
+
+function createCard(id){
+    alert("TEST")   
+    let card = document.createElement("div")
+    card.setAttribute("class","card")
+    card.setAttribute("id", `card${id}`)
+    card.innerText = `CARD ${id}`
+    card.addEventListener("click", checkCard)
+    
+
+
+    // puts into deck ot shuffle
+    deck.push(card)
+    
+   
+  
+
 }
+
+
+
 
 
 
 
 function clearMap( ){
-    let cardGen =  document.getElementById("cardGen");
 
  cardGen.outerHTML = "<div id ='cardGen' class = 'cardCarrior'> </div>";
-
 }
-
- function testing(){
-    alert("testing 123")
-    let findingp = document.querySelector("p")
-
-    alert(findingp)
-    alert("testing 456")
-
-    //aller
-
- }
 
 
 
