@@ -1,5 +1,5 @@
  .card{
-            
+             transition-duration: 1s;  
     font-size: 1rem;
     width: 7.5em;
     height: 15em;
@@ -10,9 +10,18 @@
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
-
-    
  }
+ .card:hover{
+       box-shadow: 0 4px 36px rgba(79, 70, 229, 0.4);
+ }
+
+ 
+ .card .clicked{
+   transition-duration: 2.5s;
+       background: #1a1a2e;
+   
+ }
+ 
  
 
  .cardCarrior{
