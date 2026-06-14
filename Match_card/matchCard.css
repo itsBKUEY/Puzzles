@@ -16,21 +16,47 @@
  }
 
  
- .card .clicked{
+.selected{
    transition-duration: 2.5s;
        background: #1a1a2e;
    
  }
+
+ .correct{
+   transition-duration: 4.5s;
+       background: #ffd15c;
+   
+ }
+ 
  
  
 
  .cardCarrior{
+
     display: inline-grid;
+      position: absolute;
+      background-color: #fff8756a;
+      /*transform: translateX(-50%)*/
+
     /*
     Set by JS
     grid-template-columns: 0;
     */
-    padding: 10px;
-     gap: 5px;
+
+    padding:4rem;
+
+     gap: 50px;
+
+ }
+
+ .game{
+      display: flex;
+      justify-content: center; 
+ }
+
+ #verTitle { 
+      justify-content: center; 
+      display: flex;
+      color: #6A6731;
 
  }

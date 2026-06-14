@@ -14,6 +14,9 @@ broken.outerHTML = "";
 // submit button set up
 let submity = document.querySelector('#submit');
 
+// clear button set up
+let cleary = document.querySelector('#clear');
+
 //version set up
 let versionEle = document.querySelector('#version');
 versionEle.setAttribute('type', "number");
@@ -23,6 +26,7 @@ versionEle.setAttribute('placeholder', "ex: 1, 2, 3 etc");
 let dimElement = document.querySelector('#dim');
 dimElement.setAttribute('type', 'text');
 dimElement.setAttribute('placeholder', "ex: 2x2, 3x4, etc(colxrow)");
+
 
 
 //Card Gen Set up
@@ -42,7 +46,7 @@ let deck = []
 
 // click checker
 submity.addEventListener('click',returnText );
-
+cleary.addEventListener('click',() => clearMap(deck))
 
 //Cards listenr
 //cards.addEventListener('click', match)
@@ -63,6 +67,10 @@ function returnText(){
         return
     }
     
+
+  
+
+
 
 
     for(let i = 0; i < dim.length;i++){
@@ -86,6 +94,14 @@ function returnText(){
 
         
     }
+
+      if(unclear == false){
+        alert("Inuse")
+        return
+    }
+    else{
+        unclear = false;
+    }
     
     GenerateGid(col, row, version)
 
@@ -99,18 +115,16 @@ function GenerateGid(col, row, version){
     
 
 
+
+    
+
     versionTitle.innerText = "Match Game!\n" +   " Version " + version
     cardGen.style.gridTemplateColumns = "repeat("+ col +", auto)"
     //cardGen.style.gridTemplateRows = "repeat("+ row +", auto)"
 
 
     // creates the cards we play with
-    if(unclear == false){
-        return
-    }
-    else{
-        unclear = false;
-    }
+    
 
 
     for(let i = 0; i<col; i++ ){
@@ -127,7 +141,7 @@ function GenerateGid(col, row, version){
 
 
     // Shuffles the cards
-    shufflesCards()
+    shufflesCards(deck)
 
 
     for(let i = 0; i < deck.length; i++){
@@ -174,12 +188,34 @@ function selectCard(id){
 
 function clickedCard(id){
 
+  
+
+
     let card = selectCard(id)
     let matchCard = selectCard( match.get(id).id)
 
-    matchCard.innerText += `\n\n THIS MATCHES WITH \n\n ${card.id} `
-    card.innerText += `\n\n THIS MATCHES WITH \n\n ${matchCard.id}  `
 
+  if(document.querySelector(".selected") ){
+   let prev = document.querySelector(".selected")
+        if( prev.id == matchCard.id  ){
+            console.log("found pair")
+            document.querySelector(".selected").classList.add("correct")
+            card.classList.add("correct")
+        }
+
+        document.querySelector(".selected").classList.remove("selected")
+
+        }
+
+    card.classList.toggle("selected")
+
+    
+
+    //matchCard.innerText += `\n\n THIS MATCHES WITH \n\n ${card.id} `;
+   // card.innerText += `\n\n THIS MATCHES WITH \n\n ${matchCard.id}  `;
+
+   /* card.addEventListener('click', () => tester(card.id) )
+    matchCard.addEventListener("click", ()=> tester(matchCard.id))*/
 /*
     console.log("working " + card )
     alert("ID: " + card.id)
@@ -190,12 +226,15 @@ function clickedCard(id){
 
 
 
+
 function pairCard(){
     for(let i = 0; i < deck.length; i+=2){
         //easy acces to type in
         //TODO :
         //make this more effective later, in the mean time this shoudl work fine
+       console.log("test1")
         match.set(deck[i].id,deck[i+1])
+        console.log("test21")
         match.set(deck[i+1].id,deck[i])
         match.set(deck[i],deck[i+1])
         match.set(deck[i+1],deck[i])
@@ -203,15 +242,26 @@ function pairCard(){
         //for ease of access within the object
         deck[i].match = deck[i+1]
         deck[i+1].match = deck[i]
-       alert(deck[i].id +"  ARE A MATCH  " + deck[i+1].id);
+       console.log(deck[i].id +"  ARE A MATCH  " + deck[i+1].id);
     }
 }
 
 
+function randomRange(start, end){
+return   Math.floor(Math.random() *( end - start) + start)
+}
 
+function shufflesCards(deck){
+    for(let i = 0; i < deck.length ;i++){
 
-function shufflesCards(){
+       let r = randomRange(i, deck.length-1);
 
+       //switch
+        let temp = deck[i]
+        deck[i] = deck[r]
+        deck[r]  = temp 
+
+    }
 
 }
 
@@ -222,9 +272,11 @@ function shufflesCards(){
 function clearMap(deck){
 
     for(let i = 0; i < deck.length; i++){
-       selectCard(deck[i].id).remove()
-       deck[i].remove()
+        selectCard(deck[i].id).remove()
     }
+          deck.splice(0,deck.length)
+        versionTitle.innerText = ""
+
 
     unclear = true;
 
