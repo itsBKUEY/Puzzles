@@ -5,6 +5,7 @@
 
 //global variable
 alert("TEST")
+let unclear = true
 
 //Debuging tool to see when js is broken
 let broken = document.querySelector('#broken')
@@ -102,14 +103,23 @@ function GenerateGid(col, row, version){
     cardGen.style.gridTemplateColumns = "repeat("+ col +", auto)"
     //cardGen.style.gridTemplateRows = "repeat("+ row +", auto)"
 
+
     // creates the cards we play with
-    for(let i = 0; i<col; i++ ){
-        for(let y = 0; y<row; y++ ){
-            createCard(y+""+ i)
-            
-        }
+    if(unclear == false){
+        return
+    }
+    else{
+        unclear = false;
     }
 
+
+    for(let i = 0; i<col; i++ ){
+      
+        for(let y = 0; y<row; y++ ){ 
+                createCard(y+""+ i)
+        }
+    }
+    //Once created the deck does not hold the cards in play
 
 
     //pairs the cards
@@ -121,11 +131,14 @@ function GenerateGid(col, row, version){
 
 
     for(let i = 0; i < deck.length; i++){
-        cardGen.innerHTML += deck[i].element.outerHTML;
-        
+    cardGen.innerHTML += deck[i].element.outerHTML;   
+     
     }
-            deck[1].element.addEventListener('click',clickedCard(deck[1].id))
-            
+
+    for(let i = 0; i < deck.length; i++){
+    selectCard(deck[i].id).addEventListener('click', () => clickedCard( deck[i].id) )
+     
+    }
 
    //cardGenn.innerHTML =
     
@@ -143,16 +156,37 @@ function GenerateGid(col, row, version){
 // ACCESS CARD ID WITH card.id
 
 function createCard(id){
-    let card ={ element: document.createElement("div"), id : id, match : null } 
+    
+    
+    let card ={ element: document.createElement("div"), id : `CARD${id}`, match : null } 
     card.element.setAttribute("class","card")
-    card.element.setAttribute("id", `card${id}`)
+    card.element.setAttribute("id", `CARD${id}`)
     card.element.innerText = `CARD ${id}`
     deck.push(card)
     
+    
   
-
 }
 
+function selectCard(id){
+    return document.getElementById(id)
+}
+
+function clickedCard(id){
+
+    let card = selectCard(id)
+    let matchCard = selectCard( match.get(id).id)
+
+    matchCard.innerText += `\n\n THIS MATCHES WITH \n\n ${card.id} `
+    card.innerText += `\n\n THIS MATCHES WITH \n\n ${matchCard.id}  `
+
+/*
+    console.log("working " + card )
+    alert("ID: " + card.id)
+    alert("MATCH ID: " +match.get(id).id )
+    */
+
+}
 
 
 
@@ -170,8 +204,6 @@ function pairCard(){
         deck[i].match = deck[i+1]
         deck[i+1].match = deck[i]
        alert(deck[i].id +"  ARE A MATCH  " + deck[i+1].id);
-        
-
     }
 }
 
@@ -183,16 +215,21 @@ function shufflesCards(){
 
 }
 
-function clickedCard(id){
+
+
+
+
+function clearMap(deck){
+
+    for(let i = 0; i < deck.length; i++){
+       selectCard(deck[i].id).remove()
+       deck[i].remove()
+    }
+
+    unclear = true;
+
+
     
-    alert("ID: " + id)
-}
-
-
-
-
-
-function clearMap( ){
     //TODO:
     // Make this clear the map
 
