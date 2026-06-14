@@ -34,8 +34,6 @@
  .cardCarrior{
 
     display: inline-grid;
-      position: absolute;
-      background-color: #fff8756a;
       /*transform: translateX(-50%)*/
 
     /*
@@ -52,11 +50,13 @@
  .game{
       display: flex;
       justify-content: center; 
+      position: absolute;
+
  }
 
  #verTitle { 
       justify-content: center; 
       display: flex;
-      color: #6A6731;
+      color: #6A6731
 
  }

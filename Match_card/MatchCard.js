@@ -7,9 +7,12 @@
 alert("TEST")
 let unclear = true
 
+
 //Debuging tool to see when js is broken
 let broken = document.querySelector('#broken')
 broken.outerHTML = "";
+
+
 
 // submit button set up
 let submity = document.querySelector('#submit');
@@ -68,10 +71,6 @@ function returnText(){
     }
     
 
-  
-
-
-
 
     for(let i = 0; i < dim.length;i++){
           if(  dim[i] == 'x'){
@@ -109,17 +108,19 @@ function returnText(){
 
 
 function GenerateGid(col, row, version){
-
+    
     console.log( "COL :" + col)
     console.log( "ROW :" + row)
+    let points = 0;
+
+
+
+
     
-
-
-
     
-
-    versionTitle.innerText = "Match Game!\n" +   " Version " + version
-    cardGen.style.gridTemplateColumns = "repeat("+ col +", auto)"
+    versionTitle.innerText = `Match Game!\nVersion : ${version}` 
+    cardGen.style.gridTemplateColumns = `repeat(${col}, auto)`
+    cardGen.style.backgroundColor = "#fff8756a"
     //cardGen.style.gridTemplateRows = "repeat("+ row +", auto)"
 
 
@@ -150,7 +151,7 @@ function GenerateGid(col, row, version){
     }
 
     for(let i = 0; i < deck.length; i++){
-    selectCard(deck[i].id).addEventListener('click', () => clickedCard( deck[i].id) )
+    selectCard(deck[i].id).addEventListener('click', () => clickedCard( deck[i].id, points) )
      
     }
 
@@ -178,7 +179,6 @@ function createCard(id){
     card.element.innerText = `CARD ${id}`
     deck.push(card)
     
-    
   
 }
 
@@ -186,11 +186,9 @@ function selectCard(id){
     return document.getElementById(id)
 }
 
-function clickedCard(id){
+function clickedCard(id, points){
 
-  
-
-
+    
     let card = selectCard(id)
     let matchCard = selectCard( match.get(id).id)
 
@@ -201,6 +199,10 @@ function clickedCard(id){
             console.log("found pair")
             document.querySelector(".selected").classList.add("correct")
             card.classList.add("correct")
+            points += 10;
+        }
+        else{
+            points--
         }
 
         document.querySelector(".selected").classList.remove("selected")
@@ -277,6 +279,7 @@ function clearMap(deck){
           deck.splice(0,deck.length)
         versionTitle.innerText = ""
 
+    cardGen.style.removeProperty('background-color')
 
     unclear = true;
 
