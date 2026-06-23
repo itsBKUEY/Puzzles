@@ -1,6 +1,8 @@
+    *{
+        font-family: Courier New;
 
+    }
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
             background-color: #f4f4f4;
@@ -9,6 +11,15 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        hr { 
+
+            border-top: 1px solid #f4f4f4;
+        box-shadow: 0 10px 192px rgba(79, 70, 229, 0.4);
+        height: 1px;
+            background: #f4f4f4;
+            color:#f4f4f4
+        }
+
         .puzzleContainer {
             max-width: 800px;
             margin: 0 auto;
@@ -18,18 +29,29 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
+        .header {
+        min-height: 4rem;
+        margin: 24px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+        color:#1a1a2e;
+
+        }
+
+    
+        
         .puzzleButton{
-             padding: 14px 36px;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: #1a1a2e;
-    background: #f4f4f4;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+        padding: 14px 36px;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: #1a1a2e;
+        background: #f4f4f4;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
 
         }
 
@@ -38,7 +60,7 @@
     .puzzleButton:hover{
 
         color: #6366f1;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.6);
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.6);
 
         }
     .puzzleButton:Active{
@@ -51,5 +73,10 @@
 
         }
 
-
+    .center{
+        justify-content: baseline;
+        justify-self: auto;
+        text-align: center;
+        align-content: center;
+    }
     

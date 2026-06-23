@@ -12,8 +12,6 @@ let unclear = true
 let broken = document.querySelector('#broken')
 broken.outerHTML = "";
 
-
-
 // submit button set up
 let submity = document.querySelector('#submit');
 
@@ -45,6 +43,7 @@ const match = new Map();
 
 // Deck will hold the cards before placed
 let deck = []
+
 
 
 // click checker
@@ -202,7 +201,7 @@ function clickedCard(id, points){
             points += 10;
         }
         else{
-            points--
+            points -=1
         }
 
         document.querySelector(".selected").classList.remove("selected")

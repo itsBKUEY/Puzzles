@@ -1,0 +1,30 @@
+{
+  "Match_card": {
+    "active": true,
+    "added": "2026-06-22T23:59:26.712Z",
+    "description": "",
+    "author": "N/A",
+    "path": "./puzzleItems/activePuzzles/Match_card"
+  },
+  "GridPuzzle": {
+    "active": false,
+    "added": "2026-06-22T23:59:26.719Z",
+    "description": "",
+    "author": "N/A",
+    "path": "./puzzleItems/unactivePuzzles/GridPuzzle"
+  },
+  "Guess_that_Pokemon": {
+    "active": false,
+    "added": "2026-06-22T23:59:26.719Z",
+    "description": "",
+    "author": "N/A",
+    "path": "./puzzleItems/unactivePuzzles/Guess_that_Pokemon"
+  },
+  "Template": {
+    "active": false,
+    "added": "2026-06-22T23:59:26.719Z",
+    "description": "",
+    "author": "N/A",
+    "path": "./puzzleItems/unactivePuzzles/Template"
+  }
+}
